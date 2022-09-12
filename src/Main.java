@@ -4,7 +4,7 @@ public class Main {
 
         String sample = "^[a-zA-Z0-9_]*$"; // латинские буквы, цифры и знак подчеркивания
         boolean resultLogin = login.matches(sample) && login.length() <= 20;
-        boolean resultPassword = password.matches(sample) && login.length() < 20 && password.equals(confirmPassword);
+        boolean resultPassword = password.matches(sample) && password.length() < 20 && password.equals(confirmPassword);
         if (!resultLogin) {
             try {
                 throw new WrongLoginException();
