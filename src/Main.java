@@ -1,12 +1,13 @@
 public class Main {
 
     public static boolean check(String login, String password, String confirmPassword) {
-        String sample = "\\w+"; // латинские буквы, цифры и знак подчеркивания
+
+        String sample = "^[a-zA-Z0-9_]*$"; // Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹, С†РёС„СЂС‹ Рё Р·РЅР°Рє РїРѕРґС‡РµСЂРєРёРІР°РЅРёСЏ
         boolean resultLogin = login.matches(sample) && login.length() <= 20;
-        boolean resultPassword = login.matches(sample) && login.length() < 20 && password.equals(confirmPassword);
+        boolean resultPassword = password.matches(sample) && login.length() < 20 && password.equals(confirmPassword);
         if (!resultLogin) {
             try {
-                new WrongLoginException();
+                throw new WrongLoginException();
             } catch (WrongLoginException e) {
                 return false;
             }
@@ -22,8 +23,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println(check("ava_skyprogo", "D_1hWiKjjP_9", "D_1hWiKjjP_9"));
-        System.out.println(check("ava_skyp,rogo", "D_1hWiKjjP_9", "D_1hWiKjjP_9"));
+        System.out.println(check("sdsd_ksds", "D_1hWiKjjP_9", "D_1hWiKjjP_9"));
+        System.out.println(check("ava_skypР±Р°Р°Р°rogo", "D_1hWiKjjP_9", "D_1hWiKjjP_9"));
         System.out.println(check("ava_skypzazazazazzazazarogo", "D_1hWiKjjP_9", "D_1hWiKjjP_9"));
     }
 }
